@@ -28,7 +28,7 @@ app.get('/getUsers', (req, res) => {
     UserModel.find({}).then(function(users) {
         res.json(users);
     }).catch(function(err){
-        console.log(err);
+        res.json(err);
     });
 });
 
