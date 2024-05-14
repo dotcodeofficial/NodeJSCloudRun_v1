@@ -6,14 +6,15 @@ const app = express();
 const port = 8080;
 
 mongoose.connect('mongodb+srv://admin:hekslrqaF8sBd5Vc@cluster0.q9hq99b.mongodb.net/users');
-/*
+
 const UserSchema = new mongoose.Schema({
     _id: ObjectId,
     name: String,
     email: String,
     password: String
-});
-
+},
+{ collection: 'users' });
+/*
 const UserModel = mongoose.model('users', UserSchema);
 
 app.get('/getUsers', (req, res) => {
