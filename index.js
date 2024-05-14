@@ -14,7 +14,7 @@ const UserSchema = new mongoose.Schema({
     password: String
 },
 { collection: 'users' });
-/*
+
 const UserModel = mongoose.model('users', UserSchema);
 
 app.get('/getUsers', (req, res) => {
@@ -24,7 +24,7 @@ app.get('/getUsers', (req, res) => {
         console.log(err);
     });
 });
-*/
+
 
 // Define your API routes here
 app.get('/', (req, res) => {
