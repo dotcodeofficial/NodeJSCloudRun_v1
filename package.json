@@ -1,5 +1,5 @@
 {
-    "name": "chumiAPI",
+    "name": "chumiapi",
     "verion": "0.0.1",
     "main": "index.js",
     "dependencies": {

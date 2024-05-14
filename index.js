@@ -11,10 +11,10 @@ const UserSchema = new mongoose.Schema({
     email: String,
     password: String
 });
-
+mongoose.connect('mongodb+srv://admin:hekslrqaF8sBd5Vc@cluster0.q9hq99b.mongodb.net/users');
 const UserModel = mongoose.model('users', UserSchema);
 
-mongoose.connect('mongodb+srv://admin:hekslrqaF8sBd5Vc@cluster0.q9hq99b.mongodb.net/users');
+
 // Define your API routes here
 app.get('/', (req, res) => {
     res.send('Hello, World!');
@@ -28,7 +28,7 @@ app.get('/getUsers', (req, res) => {
     UserModel.find({}).then(function(users) {
         res.json(users);
     }).catch(function(err){
-        res.json(err);
+        console.log(err);
     });
 });
 
