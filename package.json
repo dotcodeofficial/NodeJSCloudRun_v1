@@ -1,0 +1,12 @@
+{
+    "name" : "chumiAPI",
+    "verion" : "0.0.1",
+    "main": "index.js",
+    "dependencies": {
+        "express": "^4.17.1",
+        "mongoose": "^5.9.7"
+    },
+    "scripts": {
+        "start": "node index.js"
+    }
+}
