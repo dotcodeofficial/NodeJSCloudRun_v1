@@ -49,6 +49,7 @@ async function run() {
 app.get('/getUsers', (req, res) => {
 
   run().then(foo => {
+    console.log(foo);
   }).catch(err => console.log(err));
   res.send("Testing getUsers");
 });
