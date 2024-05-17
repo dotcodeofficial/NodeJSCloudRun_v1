@@ -21,9 +21,10 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     await client.connect();
+    
     await client.db("admin").command({ ping: 1 });
 
-
+/*
     const movies = client.db("sample_mflix").collection("movies");
 
     const query = { title: "Room" };
@@ -34,7 +35,7 @@ async function run() {
 
     const movie = await movies.findOne(query, options);
     console.log(movie);
-    return movie;
+    return movie;*/
   }
   catch (e) {
     console.error(prefix + " error " + e);
