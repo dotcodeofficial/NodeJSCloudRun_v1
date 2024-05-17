@@ -32,8 +32,9 @@ async function run() {
       sort: { "imdb.rating": -1 },
       projection: { _id: 0, title: 1, imdb: 1 },
     };
-/*
-    const movie = await movies.findOne(query, options);
+
+    const movie = await movies.findOne(query, options).then(console.log("movie found"));
+  /*  
     console.log(movie);
     return movie;*/
   }
