@@ -48,8 +48,8 @@ async function run() {
 app.get('/getUsers', (req, res) => {
 
   run().then(foo => {
-    res.send(foo);
   }).catch(err => console.log(err));
+  res.send("Testing getUsers");
 });
 
 // Define your API routes here
