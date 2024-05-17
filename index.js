@@ -3,25 +3,24 @@ const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = "mongodb+srv://admin:hekslrqaF8sBd5Vc@cluster0.q9hq99b.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+//const uri = "mongodb://admin:hekslrqaF8sBd5Vc@cluster0.q9hq99b.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0&directConnection=true";
 
 const app = express();
 const port = 8080;
 
 const client = new MongoClient(uri);
-
+client.connect();
   async function run() {
     try {
-        
-      // Send a ping to confirm a successful connection
+      
       const database = client.db("sample_mflix");
       const movies = database.collection("movies");
-      // Query for a movie that has the title 'The Room'
+
       const query = { title: "Room" };
 
       const options = {
-        // Sort matched documents in descending order by rating
         sort: { "imdb.rating": -1 },
-        // Include only the `title` and `imdb` fields in the returned document
+
         projection: { _id: 0, title: 1, imdb: 1 },
       };
 
