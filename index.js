@@ -24,7 +24,7 @@ async function run() {
     
     await client.db("admin").command({ ping: 1 });
 
-/*
+
     const movies = client.db("sample_mflix").collection("movies");
 
     const query = { title: "Room" };
@@ -32,7 +32,7 @@ async function run() {
       sort: { "imdb.rating": -1 },
       projection: { _id: 0, title: 1, imdb: 1 },
     };
-
+/*
     const movie = await movies.findOne(query, options);
     console.log(movie);
     return movie;*/
