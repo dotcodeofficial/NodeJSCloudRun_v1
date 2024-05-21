@@ -3,11 +3,14 @@
     "verion": "0.0.1",
     "main": "index.js",
     "dependencies": {
+        "axios": "^1.7.1",
         "express": "^4.19.2",
         "mongodb": "^6.6.1",
-        "mongoose": "^5.13.22"
+        "mongoose": "^5.13.22",
+        "request": "^2.88.2"
     },
     "scripts": {
         "start": "node index.js"
-    }
+    },
+    "type": "module"
 }
