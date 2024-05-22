@@ -15,8 +15,9 @@ async function genericRequest(fatSecretRequestParameters) {
     headers: {
       Authorization: bearer
     }
-  }).catch((error) => {
-    console.error(error);
+  })
+  .catch((error) => {
+    return error;
   }
   );
 }
