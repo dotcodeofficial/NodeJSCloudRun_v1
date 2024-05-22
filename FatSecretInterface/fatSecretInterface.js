@@ -6,11 +6,11 @@ import fatSecretRequestParameters from './Models/fatSecretRequestParameters.js';
 
 var clientID = '9cd44b6e64f0485aa79e5c0bd0bfda13';
 var clientSecret = 'adadf5f5c1fb4f32a408c6251048bf9b';
-const bearer = 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjQ4NDUzNUJFOUI2REY5QzM3M0VDNUNBRTRGMEJFNUE2QTk3REQ3QkMiLCJ0eXAiOiJhdCtqd3QiLCJ4NXQiOiJTRVUxdnB0dC1jTno3Rnl1VHd2bHBxbDkxN3cifQ.eyJuYmYiOjE3MTYzMTcwNzEsImV4cCI6MTcxNjQwMzQ3MSwiaXNzIjoiaHR0cHM6Ly9vYXV0aC5mYXRzZWNyZXQuY29tIiwiYXVkIjoiYmFzaWMiLCJjbGllbnRfaWQiOiI5Y2Q0NGI2ZTY0ZjA0ODVhYTc5ZTVjMGJkMGJmZGExMyIsInNjb3BlIjpbImJhc2ljIl19.iXw1BMGsyW9iX7c9qMeo0MvD7dmHQCTC3rEeoxuU0n2YDCCgbHKD3D4hmAzM1BHeiNroB8VwZWwSSjalQcz5QMIYjLi_GhXRsVK8ZMkO1rXC9jNkaxn7gUIHG7UIeVndKbnKtG9o33P7IzSPkOyk-xF8tPFGWi0oJLjl5YBLCP60Pf-thtmTXWUXiU-FK3dScNrBmXoplicvkGOekFQT085McqjosiYjl7MuZELMBScDMUf4HOg2f73WljH6s9yVsiS_Y6c2LRX8Vndiojq2TnvfwAtW0vLtGfiF3X8I0-TlEAj0qGigSWzHPeP8UtdNv2QqZzHhy98OVTcmiyfiew';
+const bearer = 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjQ4NDUzNUJFOUI2REY5QzM3M0VDNUNBRTRGMEJFNUE2QTk3REQ3QkMiLCJ0eXAiOiJhdCtqd3QiLCJ4NXQiOiJTRVUxdnB0dC1jTno3Rnl1VHd2bHBxbDkxN3cifQ.eyJuYmYiOjE3MTY0MDczNjMsImV4cCI6MTcxNjQ5Mzc2MywiaXNzIjoiaHR0cHM6Ly9vYXV0aC5mYXRzZWNyZXQuY29tIiwiYXVkIjoiYmFzaWMiLCJjbGllbnRfaWQiOiI5Y2Q0NGI2ZTY0ZjA0ODVhYTc5ZTVjMGJkMGJmZGExMyIsInNjb3BlIjpbImJhc2ljIl19.upMtXLcov31pLRrwe_uqI-X1PHyZ9GPivWXTr0J4pLGZy898QnILDoVmkJL0coL3OBqsJaW0nd8ZtIwAuJb0mswvNHMh4RqgcuuCCfuI1pi4pQQbd_ibgZArzlpbBGjVwDA5tMIlH-VTCZw8BotfHMQUWuzWZre0fOOX9ebsb_B0frCZfzOi_K_EDGUnurCGTSWcPrQCbMS4GGPT997dMqejhdMDvJDl7nXwkhMpnrwuj8jw_npc8EQcEYLKTLO3dHt1xJQwIl5JJMdoOWtFGOlNDk7yE1Aiy-jK9gxiaeGsejuZqsFBEm4R4g_h3uLN9vlZk9LP_mFXAFYulNtiXA';
 
 
 async function genericRequest(fatSecretRequestParameters) {
-  console.log('genericRequest entered');
+  
   return axios.get('https://platform.fatsecret.com/rest/server.api' + fatSecretRequestParameters.getParameters, {
     headers: {
       Authorization: bearer
@@ -35,8 +35,9 @@ export function getFoodById(searchString) {
   return genericRequest(fatSecretParams);
 }
 
-
 /*
+getBearerToken();
+
 function getBearerToken() {
   
   var options = {
@@ -60,9 +61,9 @@ function getBearerToken() {
   
     console.log(body.access_token);
   });
-}*/
+}
 
-
+*/
 
 
 /*
