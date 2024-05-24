@@ -6,20 +6,28 @@ import fatSecretRequestParameters from './Models/fatSecretRequestParameters.js';
 
 var clientID = '9cd44b6e64f0485aa79e5c0bd0bfda13';
 var clientSecret = 'adadf5f5c1fb4f32a408c6251048bf9b';
-const bearer = 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjQ4NDUzNUJFOUI2REY5QzM3M0VDNUNBRTRGMEJFNUE2QTk3REQ3QkMiLCJ0eXAiOiJhdCtqd3QiLCJ4NXQiOiJTRVUxdnB0dC1jTno3Rnl1VHd2bHBxbDkxN3cifQ.eyJuYmYiOjE3MTY0MDczNjMsImV4cCI6MTcxNjQ5Mzc2MywiaXNzIjoiaHR0cHM6Ly9vYXV0aC5mYXRzZWNyZXQuY29tIiwiYXVkIjoiYmFzaWMiLCJjbGllbnRfaWQiOiI5Y2Q0NGI2ZTY0ZjA0ODVhYTc5ZTVjMGJkMGJmZGExMyIsInNjb3BlIjpbImJhc2ljIl19.upMtXLcov31pLRrwe_uqI-X1PHyZ9GPivWXTr0J4pLGZy898QnILDoVmkJL0coL3OBqsJaW0nd8ZtIwAuJb0mswvNHMh4RqgcuuCCfuI1pi4pQQbd_ibgZArzlpbBGjVwDA5tMIlH-VTCZw8BotfHMQUWuzWZre0fOOX9ebsb_B0frCZfzOi_K_EDGUnurCGTSWcPrQCbMS4GGPT997dMqejhdMDvJDl7nXwkhMpnrwuj8jw_npc8EQcEYLKTLO3dHt1xJQwIl5JJMdoOWtFGOlNDk7yE1Aiy-jK9gxiaeGsejuZqsFBEm4R4g_h3uLN9vlZk9LP_mFXAFYulNtiXA';
+const bearer = 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjQ4NDUzNUJFOUI2REY5QzM3M0VDNUNBRTRGMEJFNUE2QTk3REQ3QkMiLCJ0eXAiOiJhdCtqd3QiLCJ4NXQiOiJTRVUxdnB0dC1jTno3Rnl1VHd2bHBxbDkxN3cifQ.eyJuYmYiOjE3MTY1NDY0NjgsImV4cCI6MTcxNjYzMjg2OCwiaXNzIjoiaHR0cHM6Ly9vYXV0aC5mYXRzZWNyZXQuY29tIiwiYXVkIjoiYmFzaWMiLCJjbGllbnRfaWQiOiI5Y2Q0NGI2ZTY0ZjA0ODVhYTc5ZTVjMGJkMGJmZGExMyIsInNjb3BlIjpbImJhc2ljIl19.IL7TWASHP6Y_ZzDXz3FPxUaOT4XEfWK94gOykjSHpHGfeFsAt9FChLPtuGriDVHwUxWEL2B_Y7NhfvDLEUJjRLxn34_Qhu0Pd1y0vjwDUvGg6_sbwluihHGirPlrMRcIVLO667-PLiZtEjJWmeUOM2ERZ82BI2uJPrx9MeJUCduWYFpME4LDP7ix6DuZ_O_X2nT9kk8dMvcT_myilASOLmWoyYnxxNZpGoWc5Z6Fr-oXS0nFQfZPX2JZIMLJRszYkKiFap7yCCRvJuHhKjGyZy3hAygwrdzpecMOO91LDfJeYYQt96Mh6jbVrBGT5DRLxhJJGMRU8p2C5ZaVyAEg_Q';
 
 
 async function genericRequest(fatSecretRequestParameters) {
-  
-  return axios.get('https://platform.fatsecret.com/rest/server.api' + fatSecretRequestParameters.getParameters, {
-    headers: {
-      Authorization: bearer
-    }
-  })
-  .catch((error) => {
-    return error;
+
+  try {
+    return axios.get('https://platform.fatsecret.com/rest/server.api' + fatSecretRequestParameters.getParameters, {
+      headers: {
+        Authorization: bearer
+      }
+    })
+      .catch((error) => {
+        console.log(error);
+        return error;
+      }
+      );
   }
-  );
+  catch (error) {
+    console.log(error);
+    return error;
+
+  }
 }
 
 export function searchFood(searchString) {
@@ -30,9 +38,9 @@ export function searchFood(searchString) {
 }
 
 export function getFoodById(searchString) {
-  
+
   let fatSecretParams = new fatSecretRequestParameters('food.get.v4', searchString, 'json');
-  
+
   return genericRequest(fatSecretParams);
 }
 
@@ -63,8 +71,8 @@ function getBearerToken() {
     console.log(body.access_token);
   });
 }
-
 */
+
 
 
 /*

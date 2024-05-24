@@ -1,6 +1,6 @@
 import express from 'express';
 
-import {searchFood, getFoodById} from './FatSecretInterface/fatSecretInterface.js';
+import { searchFood, getFoodById } from './FatSecretInterface/fatSecretInterface.js';
 
 const app = express();
 const port = 8080;
@@ -8,12 +8,13 @@ const port = 8080;
 
 app.get('/getByID', (req, res) => {
   req.query.id
-  getFoodById(req.query.id).then((data) => {res.send(data);}).catch((error) => {res.send(error);});
+  getFoodById(req.query.id).then((data) => { res.send(data.data); });
 });
 
 app.get('/searchFood', (req, res) => {
   req.query.id
-  searchFood(req.query.id).then((data) => {res.send(data);}).catch((error) => {res.send(error);});
+
+    searchFood(req.query.id).then((data) => { res.send(data.data);});
 });
 
 app.get('/appData', (req, res) => {
