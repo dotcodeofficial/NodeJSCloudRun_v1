@@ -7,6 +7,7 @@ const port = 8080;
 
 
 app.get('/getByID', (req, res) => {
+  console.log("Test LOG AAAAAAAAAAAAAAAAA");
   req.query.id
   getFoodById(req.query.id).then((data) => {
     res.send(data.data); 
