@@ -8,8 +8,7 @@ const port = 8080;
 
 app.get('/getByID', (req, res) => {
   req.query.id
-  getFoodById(req.query.id).then((data) => { 
-    console.log(data.data);
+  getFoodById(req.query.id).then((data) => {
     res.send(data.data); 
   });
 });
