@@ -13,6 +13,7 @@ const bearer = 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjQ4NDUzNUJFOUI2REY5QzM3M0VDN
 
 /* -----------DO NOT DELETE, THIS IS THE ONLY VERSION THAT ACTUALLY WORKS----------------*/
 async function generateBearerToken() {
+  console.log("generateBearerToken called");
   let formData = new FormData();
   formData.append('grant_type', 'client_credentials');
   formData.append('user', clientID);
@@ -36,6 +37,7 @@ async function generateBearerToken() {
 
 
 async function genericRequest(fatSecretRequestParameters) {
+  console.log("genericRequest called");
   generateBearerToken();
   try {
     return axios.get('https://platform.fatsecret.com/rest/server.api' + fatSecretRequestParameters.getParameters, {
@@ -55,6 +57,7 @@ async function genericRequest(fatSecretRequestParameters) {
 }
 
 export function getFoodById(searchString) {
+  console.log("getFoodById called");
   let fatSecretParams = new fatSecretRequestParameters('food.get.v4', searchString, 'json');
 
   return genericRequest(fatSecretParams);
