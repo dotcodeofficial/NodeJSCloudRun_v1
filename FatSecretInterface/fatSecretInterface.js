@@ -10,7 +10,7 @@ const bearer = 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjQ4NDUzNUJFOUI2REY5QzM3M0VDN
 
 
 async function genericRequest(fatSecretRequestParameters) {
-
+  console.log("genericRequest entered");
   try {
     return axios.get('https://platform.fatsecret.com/rest/server.api' + fatSecretRequestParameters.getParameters, {
       headers: {
@@ -30,19 +30,21 @@ async function genericRequest(fatSecretRequestParameters) {
   }
 }
 
-export function searchFood(searchString) {
+export function getFoodById(searchString) {
+  console.log("getFoodById entered");
+  let fatSecretParams = new fatSecretRequestParameters('food.get.v4', searchString, 'json');
 
+  return genericRequest(fatSecretParams);
+}
+
+export function searchFood(searchString) {
+  console.log("searchFood entered");
   let fatSecretParams = new fatSecretRequestParameters('foods.search', searchString, 'json');
 
   return genericRequest(fatSecretParams);
 }
 
-export function getFoodById(searchString) {
 
-  let fatSecretParams = new fatSecretRequestParameters('food.get.v4', searchString, 'json');
-
-  return genericRequest(fatSecretParams);
-}
 
 /*
 getBearerToken();
