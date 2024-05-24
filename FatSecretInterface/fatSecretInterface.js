@@ -32,10 +32,11 @@ async function generateBearerToken() {
       return error;
     });
 }
-generateBearerToken();
+
 
 
 async function genericRequest(fatSecretRequestParameters) {
+  generateBearerToken();
   try {
     return axios.get('https://platform.fatsecret.com/rest/server.api' + fatSecretRequestParameters.getParameters, {
       headers: {
