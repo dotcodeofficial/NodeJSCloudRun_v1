@@ -46,7 +46,6 @@ export function searchFood(searchString) {
 
 
 
-/*
 getBearerToken();
 
 function getBearerToken() {
@@ -73,7 +72,6 @@ function getBearerToken() {
     console.log(body.access_token);
   });
 }
-*/
 
 
 
