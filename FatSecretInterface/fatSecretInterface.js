@@ -33,7 +33,7 @@ async function generateBearerToken() {
       console.log(error);
     });
 }
-
+ 
 generateBearerToken();
 
 async function genericRequest(fatSecretRequestParameters) {
