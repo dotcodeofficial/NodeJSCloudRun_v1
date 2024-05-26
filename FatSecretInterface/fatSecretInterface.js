@@ -24,7 +24,7 @@ async function generateBearerToken() {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': 'Basic ' + Buffer.from(clientID + ':' + clientSecret).toString('base64')
-    }
+    }, timeout: 0
   }).then((response) => {
     console.log(response.data);
 })
