@@ -12,9 +12,6 @@ class bearerToken {
             var temp = this.generateBearerToken();
             console.log("AAAAAAAAAAA"+temp);
             return temp;
-        
-
-        return this.bearerToken;
     }
 
 

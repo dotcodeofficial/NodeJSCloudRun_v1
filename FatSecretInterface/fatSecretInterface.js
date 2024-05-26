@@ -30,11 +30,11 @@ async function generateBearerToken() {
 })
 
     .catch((error) => {
-      return error;
+      console.log(error);
     });
 }
 
-
+generateBearerToken();
 
 async function genericRequest(fatSecretRequestParameters) {
   console.log("genericRequest called");
