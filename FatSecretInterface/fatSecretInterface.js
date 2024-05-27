@@ -1,9 +1,6 @@
-import request from 'request';
-import http from 'https';
+
 import axios from 'axios';
 import fatSecretRequestParameters from './Models/fatSecretRequestParameters.js';
-import bearerToken from './Models/bearer.js';
-import fetch from 'node-fetch';
 
 var clientID = '9cd44b6e64f0485aa79e5c0bd0bfda13';
 var clientSecret = 'adadf5f5c1fb4f32a408c6251048bf9b';
@@ -33,12 +30,9 @@ async function generateBearerToken() {
       console.log(error);
     });
 }
- 
-generateBearerToken();
 
 async function genericRequest(fatSecretRequestParameters) {
   console.log("genericRequest called");
-  generateBearerToken();
   try {
     return axios.get('https://platform.fatsecret.com/rest/server.api' + fatSecretRequestParameters.getParameters, {
       headers: {
