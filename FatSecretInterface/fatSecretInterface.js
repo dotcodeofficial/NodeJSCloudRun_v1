@@ -1,6 +1,7 @@
 
 import axios from 'axios';
 import fatSecretRequestParameters from './Models/fatSecretRequestParameters.js';
+import { saveBearer, getBearer } from '../MongoDBInterface/mongoDBInterface.js';
 
 var clientID = '9cd44b6e64f0485aa79e5c0bd0bfda13';
 var clientSecret = 'adadf5f5c1fb4f32a408c6251048bf9b';
@@ -9,33 +10,59 @@ const bearer = 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjQ4NDUzNUJFOUI2REY5QzM3M0VDN
 
 /* -----------DO NOT DELETE, THIS IS THE ONLY VERSION THAT ACTUALLY WORKS----------------*/
 async function generateBearerToken() {
-  console.log("generateBearerToken called");
+
   let formData = new FormData();
   formData.append('grant_type', 'client_credentials');
   formData.append('user', clientID);
   formData.append('password', clientSecret);
   formData.append('scope', 'basic');
 
-  return axios.post('https://oauth.fatsecret.com/connect/token', formData, {
+  axios.post('https://oauth.fatsecret.com/connect/token', formData, {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': 'Basic ' + Buffer.from(clientID + ':' + clientSecret).toString('base64')
     }, timeout: 0
   }).then((response) => {
-    console.log(response.data);
-})
+    //console.log(response.data);
+    return response.data;
+  })
 
-    .catch((error) => {
-      console.log(error);
+    .catch((err) => {
+      console.error('file: mongoDBInterface.js, Function: getBearer, Error:' + err);
     });
 }
 
+export async function getBearerToken() {
+
+  getBearer().then((bearer) => {
+    if (!bearer) {
+      console.log("file: fatSecretInterface.js, Function: getBearerToken, Message: Bearer token not found, generating new one");
+      generateBearerToken().then((data) => {
+        console.log("file: fatSecretInterface.js, Function: getBearerToken, Message: Generate bearer Token has run, data:" + data);
+        saveBearer(data).then( () => {
+          console.log("file: fatSecretInterface.js, Function: getBearerToken, Message:Save Bearer has run");
+        });
+        
+        return data;
+      });
+      saveBearer(bearer);
+      return bearer;
+    }
+  });
+  return bearer;
+
+
+}
+
+
+
+
+
 async function genericRequest(fatSecretRequestParameters) {
-  console.log("genericRequest called");
   try {
     return axios.get('https://platform.fatsecret.com/rest/server.api' + fatSecretRequestParameters.getParameters, {
       headers: {
-        Authorization: bearer,
+        Authorization: 'Bearer ' + await getBearerToken(),
       }
     })
       .catch((error) => {
@@ -43,14 +70,14 @@ async function genericRequest(fatSecretRequestParameters) {
       }
       );
   }
-  catch (error) {
-    return error;
+  catch (err) {
+    console.error('file: mongoDBInterface.js, Function: getBearer, Error:' + err);
+    return err;
 
   }
 }
 
 export function getFoodById(searchString) {
-  console.log("getFoodById called");
   let fatSecretParams = new fatSecretRequestParameters('food.get.v4', searchString, 'json');
 
   return genericRequest(fatSecretParams);

@@ -1,7 +1,7 @@
 import express from 'express';
 
-import { searchFood, getFoodById } from './FatSecretInterface/fatSecretInterface.js';
-import { addUser } from './MongoDBInterface/mongoDBInterface.js';
+import { searchFood, getFoodById, getBearerToken } from './FatSecretInterface/fatSecretInterface.js';
+import { getBearer, saveBearer } from './MongoDBInterface/mongoDBInterface.js';
 
 const app = express();
 const port = 8080;
@@ -20,12 +20,17 @@ app.get('/searchFood', (req, res) => {
   });
 });
 
+
+
 app.get('/appData', (req, res) => {
   res.send(process.versions);
 });
 
-app.get('/getUsers', (req, res) => {
-  res.send(getMovies());
+app.get('/saveBearer', (req, res) => {
+  getBearerToken().then((data) => {
+    console.log('file: index.js, Function: saveBearer, Message: getBearerToken has run');
+    res.send(data);
+  });
 });
 
 app.listen(port, () => {
