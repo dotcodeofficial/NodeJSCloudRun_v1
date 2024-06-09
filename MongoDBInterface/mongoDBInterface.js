@@ -17,7 +17,8 @@ export async function getBearer() {
 
     let bearer = await BearerToken.findOne({});
 
-    console.log(bearer);
+    console.log('file: mongoDBInterface.js, Function: getBearer, Message: Bearer token:' + bearer);
+    console.log('System Date:' + Date.now());
 
     if (bearer == null) {
       return false;
