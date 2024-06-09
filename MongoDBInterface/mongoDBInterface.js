@@ -14,25 +14,22 @@ mongoose.connect(uri);
 export async function getBearer() {
 
   try {
-    
-    BearerToken.findOne({}).then(
-      (bearer) => {
-        console.log(bearer);
 
-        if (bearer == null) {
-          return false;
-        }
-        if (bearer.expires < Date.now()) {
-          bearer.deleteOne();
-          return false;
-        }
-        return bearer;
+    let bearer = await BearerToken.findOne({});
 
-      }
-    ).catch((err) => {
-      console.error('file: mongoDBInterface.js, Function: getBearer, Error:' + err);
-      return err;
-    });
+    console.log(bearer);
+
+    if (bearer == null) {
+      return false;
+    }
+    if (bearer.expires < Date.now()) {
+      bearer.deleteOne();
+      return false;
+    }
+    console.log("file: mongoDBInterface.js, Function: getBearer, Message: Bearer token found, token:" + bearer);
+    return bearer;
+
+
 
   }
   catch (err) {
@@ -42,7 +39,7 @@ export async function getBearer() {
 }
 
 export async function saveBearer(token) {
-  console.log("file: mongoDBInterface.js, Function: saveBearer, Message: saveBearer has begin, token:" + token);
+  console.log("file: mongoDBInterface.js, Function: saveBearer, Message: saveBearer has begun, token:" + token);
   try {
     await BearerToken.create({ token: token });
   }
@@ -53,3 +50,4 @@ export async function saveBearer(token) {
 
   return true;
 }
+  
