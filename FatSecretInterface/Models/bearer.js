@@ -10,7 +10,6 @@ class bearerToken {
 
     get getBearerToken() {
             var temp = this.generateBearerToken();
-            console.log("AAAAAAAAAAA"+temp);
             return temp;
     }
 
@@ -32,13 +31,11 @@ class bearerToken {
                 'Authorization': 'Basic ' + Buffer.from(clientID + ':' + clientSecret).toString('base64')
             }
         }).then((response) => {
-            //console.log(response.data);
             this.bearerToken = response.data;
             this.generatedTime = Date.now();
             return response.data;
         })
         .catch((error) => {
-            //console.log(error);
             return error;
         });
 

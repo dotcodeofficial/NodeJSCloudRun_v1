@@ -1,22 +1,29 @@
 import express from 'express';
 
-import { searchFood, getFoodById, getBearerToken } from './FatSecretInterface/fatSecretInterface.js';
-import { getBearer, saveBearer } from './MongoDBInterface/mongoDBInterface.js';
+import { searchFood, getFoodById, getFoodByBarcode, getBearerToken } from './FatSecretInterface/fatSecretInterface.js';
 
 const app = express();
 const port = 8080;
 
 
 
-app.get('/getByID', (req, res) => {
+app.get('/foodItem/getByID', (req, res) => {
   getFoodById(req.query.id).then((data) => {
-    res.send(data.data); 
+    res.send(data.data);
   });
 });
 
-app.get('/searchFood', (req, res) => {
-    searchFood(req.query.id).then((data) => { 
+app.get('/foodItem/getByBarcode', (req, res) => {
+  getFoodByBarcode(req.query.id).then((data) => {
+    getFoodById(data.data.food_id.value).then((data) => {
       res.send(data.data);
+    });
+  });
+});
+
+app.get('/foodItem/searchFood', (req, res) => {
+  searchFood(req.query.id).then((data) => {
+    res.send(data.data);
   });
 });
 
@@ -28,7 +35,6 @@ app.get('/appData', (req, res) => {
 
 app.get('/saveBearer', (req, res) => {
   getBearerToken().then((data) => {
-    console.log('file: index.js, Function: saveBearer, Message: getBearerToken has run');
     res.send(data);
   });
 });

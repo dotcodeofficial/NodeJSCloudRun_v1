@@ -11,6 +11,10 @@
             return '?method='+ this.method + '&food_id='+ this.search_expression + '&format='+ this.format;
         case 'foods.search':
             return '?method='+ this.method + '&search_expression=' + this.search_expression + '&format='+ this.format;
+        case 'food.find_id_for_barcode': //Not in use
+            return '?method='+ this.method + '&barcode=' + this.search_expression + '&format='+ this.format;
+
+
         }
     }
     
